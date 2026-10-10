@@ -1,0 +1,14 @@
+\subsection{Algorithm}
+\begin{algorithm}[H]
+\caption{Breadth-first search}\label{alg:bfs}
+\begin{algorithmic}[1]
+\Require Graph $G$, start vertex $s$
+\State Mark $s$ visited and add it to queue $Q$
+\While{$Q$ is not empty}
+  \State $u \gets$ remove the front of $Q$
+  \For{each neighbor $v$ of $u$}
+    \If{$v$ is not visited} \State mark $v$ visited and add it to $Q$ \EndIf
+  \EndFor
+\EndWhile
+\end{algorithmic}
+\end{algorithm}

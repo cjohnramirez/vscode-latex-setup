@@ -117,6 +117,59 @@ The first build may take a minute while MiKTeX downloads packages. Be patient, a
 
 ---
 
+## Folder structure
+
+```
+├── main.tex            <- preamble + chapter list (the file you build)
+├── thesis-refs.bib     <- all citations
+├── .latexmkrc          <- lets BibTeX find the .bib file
+└── chapters/
+    ├── 01-introduction/
+    │   ├── chapter.tex <- main file of the chapter, hosts its sections
+    │   ├── background.tex
+    │   └── ...
+    ├── 02-literature/
+    │   ├── chapter.tex
+    │   ├── sample.tex
+    │   └── ...
+    └── 03-methodology/
+        ├── chapter.tex
+        ├── model.tex
+        └── ...
+```
+
+The chapters and sections in this repo are only samples. Rename, remove, or add your own.
+
+**How it fits together:** `main.tex` loads each `chapter.tex`, and each `chapter.tex` loads its section files.
+
+`main.tex`:
+
+```latex
+\input{chapters/01-introduction/chapter}
+```
+
+`chapters/01-introduction/chapter.tex`:
+
+```latex
+\section{Introduction}
+\input{chapters/01-introduction/background}
+```
+
+`chapters/01-introduction/background.tex`:
+
+```latex
+\subsection{Background of the Study}
+Your text here.
+```
+
+- **New section:** create the file, then add an `\input` line to its `chapter.tex`.
+- **New chapter:** create a numbered folder with a `chapter.tex`, then add an `\input` line to `main.tex`.
+- **Paths** always start from the folder that holds `main.tex`.
+- **Always build `main.tex`.** Chapter and section files will not compile on their own.
+- **One section per file** keeps Git merges painless.
+
+---
+
 ## Working together with Git (branching)
 
 With several authors, everyone editing `main` leads to merge conflicts and a broken build. Use short branches instead.
@@ -187,7 +240,7 @@ build/
 | `latexmk` says Perl is missing or gives Perl errors | Strawberry Perl isn't installed or isn't in PATH. Redo Step 1 |
 | Build looks stuck on the first run | MiKTeX may be waiting on a popup or downloading. Check for a hidden window, and set auto install to **Always** (Step 3) |
 | `File 'xxx.sty' not found` | Auto install is off or you have no internet. Check Step 3, or install the package in MiKTeX Console under **Packages** |
-| Citations show as `[?]` | Build twice, or check that your `.bib` file name matches `\bibliography{...}` |
+| Citations show as `[?]` | Build twice, or check that your `.bib` file name matches `\bibliography{...}`. If `build/main.blg` says "I couldn't open database file", check that `.latexmkrc` is next to `main.tex`. If it says "I didn't find a database entry", run `kpsewhich -all yourname.bib`: if it lists a file inside MiKTeX, rename your `.bib` to something unique |
 | PDF won't update or "permission denied" | Close the PDF in any other viewer (Acrobat, etc.) |
 | Weird errors after an update | In MiKTeX Console, run **Tasks**, then **Refresh file name database** |
 | Two Perls conflict | Make sure Strawberry Perl comes first in PATH, or uninstall the extra Perl |

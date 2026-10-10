@@ -1,0 +1,11 @@
+\subsection{Pipeline}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=0.8cm]
+  \node[module] (a) {Input data};
+  \node[module, below=of a] (b) {Processing step};
+  \node[module, below=of b] (c) {Output};
+  \draw[myarrow] (a)--(b); \draw[myarrow] (b)--(c);
+\end{tikzpicture}
+\caption{Flow diagram using the \texttt{module} and \texttt{myarrow} styles.}
+\end{figure}

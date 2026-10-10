@@ -1,0 +1,16 @@
+\subsection{Theory}
+\begin{lemma}[Triangle inequality]\label{lem:tri}
+For any vertices $a,b,c$, $d(a,c)\le d(a,b)+d(b,c)$.
+\end{lemma}
+\begin{proof}
+Joining a shortest $a$--$b$ path to a shortest $b$--$c$ path gives an $a$--$c$ walk of length $d(a,b)+d(b,c)$. The shortest $a$--$c$ path is no longer than that walk.
+\end{proof}
+\begin{theorem}[Sum of integers]\label{thm:sum}
+For every $n\ge 1$, $\displaystyle\sum_{i=1}^{n} i=\frac{n(n+1)}{2}$.
+\end{theorem}
+\begin{proof}
+By induction. For $n=1$ both sides equal $1$. If it holds for $n$, then $\sum_{i=1}^{n+1} i=\frac{n(n+1)}{2}+(n+1)=\frac{(n+1)(n+2)}{2}$.
+\end{proof}
+\begin{corollary}
+The sum of the first $100$ integers is $5050$, by Theorem~\ref{thm:sum}.
+\end{corollary}

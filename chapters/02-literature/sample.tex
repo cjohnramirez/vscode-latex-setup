@@ -1,0 +1,18 @@
+\subsection{Example Subsection}
+Short prose with grouped citations \cite{dijkstra1959note, cormen2009introduction}. Summary tables use one pattern throughout:
+
+\begin{table}[H]
+\centering
+\caption{Sample literature summary table.}\label{tab:rrl}
+\vspace{4pt}
+\begin{tabularx}{\textwidth}{l X X}
+\toprule
+\textbf{Source} & \textbf{Contribution} & \textbf{Limitation}\\
+\midrule
+Dijkstra \cite{dijkstra1959note} & Shortest paths with non-negative weights & Fails on negative weights\\
+Cormen et al. \cite{cormen2009introduction} & Broad textbook coverage of algorithms & General, not specialized\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Cross-references are blue: Table~\ref{tab:rrl}, Section~\ref{sec:model}.
